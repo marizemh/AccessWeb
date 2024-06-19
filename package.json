@@ -1,0 +1,26 @@
+{
+	"name": "devops-webapp",
+	"version": "1.0.0-SNAPSHOT",
+	"description": "DevOps webapp monorepo",
+	"scripts": {
+		"prepare": "node_modules/husky/lib/bin.js install",
+		"postinstall": "cd shared && npm i && cd ../client && npm i && cd ../server && npm i && cd ..",
+		"front": "cd client && npm start",
+		"back": "cd server && npm start",
+		"migration:create": "cd server && npm run migration:create ",
+		"migration:status": "cd server && npm run migration:status",
+		"migration:up": "cd server && npm run migration:up",
+		"migration:down": "cd server && npm run migration:down"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/skydropx/devops-webapp.git"
+	},
+	"author": "Skydropx",
+	"license": "UNLICENSED",
+	"devDependencies": {
+		"husky": "6.0.0",
+		"prettier": "2.2.1",
+		"pretty-quick": "3.1.0"
+	}
+}

@@ -1,0 +1,11 @@
+{
+	"name": "shared",
+	"version": "1.0.0",
+	"description": "shared code",
+	"author": "Skydropx DevOps team",
+	"dependencies": {
+		"typedjson": "1.7.0",
+		"typeorm": "0.2.31",
+		"@tsed/schema": "6.34.3"
+	}
+}

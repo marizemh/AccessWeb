@@ -1,0 +1,48 @@
+version: "3.3"
+services:
+  client:
+    container_name: devops-webapp-client
+    build:
+      context: .
+      dockerfile: client.Dockerfile
+    ports:
+      - "4000:3000"
+    networks:
+      skydropx-network-devkit:
+        aliases:
+          - devops-webapp.local
+    restart: always
+  server:
+    container_name: devops-webapp-server
+    env_file:
+      - ./.env
+    build:
+      context: .
+      dockerfile: server.Dockerfile
+    ports:
+      - "6000:3000"
+    networks:
+      skydropx-network-devkit:
+        aliases:
+          - devops-webapp.local
+    restart: always
+  postgres:
+    image: postgres:11.1
+    restart: always
+    env_file:
+      - ./.env
+    ports:
+      - "${DB_PORT}:5432"
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    container_name: postgres-${COMPOSE_PROJECT_NAME}
+    networks:
+      - skydropx-network-devkit
+    domainname: postgres
+    hostname: postgres
+volumes:
+  postgres:
+    driver: local
+networks:
+  skydropx-network-devkit:
+    driver: bridge

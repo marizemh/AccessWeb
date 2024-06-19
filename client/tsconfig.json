@@ -1,0 +1,29 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+	"compileOnSave": false,
+	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"baseUrl": "./src",
+		"outDir": "./dist/out-tsc",
+		"sourceMap": true,
+		"declaration": false,
+		"downlevelIteration": true,
+		"experimentalDecorators": true,
+		"moduleResolution": "node",
+		"importHelpers": true,
+		"target": "es2020",
+		"module": "es2020",
+		"lib": ["es2020", "dom"],
+		"paths": {
+			"@app/*": ["app/*"],
+			"@shared/*": ["../../shared/*"],
+			"@environments/*": ["environments/*"],
+			"typeorm": ["app/shims/typeorm-model"],
+			"@tsed/schema": ["app/shims/tsed"],
+			"json-schema": ["app/shims/json-schema"]
+		}
+	},
+	"angularCompilerOptions": {
+		"enableI18nLegacyMessageIdFormat": false
+	}
+}

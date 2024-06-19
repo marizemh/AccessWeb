@@ -1,0 +1,34 @@
+{
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "es2016",
+		"sourceMap": true,
+		"declaration": false,
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"moduleResolution": "node",
+		"isolatedModules": false,
+		"suppressImplicitAnyIndexErrors": false,
+		"noImplicitAny": false,
+		"strictNullChecks": false,
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"allowSyntheticDefaultImports": true,
+		"importHelpers": true,
+		"newLine": "LF",
+		"noEmit": true,
+		"resolveJsonModule": true,
+		"lib": ["es7", "dom", "esnext.asynciterable"],
+		"types": ["reflect-metadata", "mocha", "node"],
+		"typeRoots": ["./node_modules/@types"],
+		"baseUrl": ".",
+		"paths": {
+			"@shared/*": ["./*"]
+		}
+	},
+	"include": ["./src/**/*.ts"],
+	"exclude": ["node_modules", "./public", "dist"],
+	"linterOptions": {
+		"exclude": []
+	}
+}
