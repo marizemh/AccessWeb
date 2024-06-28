@@ -1,100 +1,57 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, NgForm, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { fuseAnimations } from '@fuse/animations';
-import { FuseAlertType } from '@fuse/components/alert';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'app/core/auth/auth.service';
+import { environment } from 'environments/environment';
 
 @Component({
-	selector: 'auth-sign-in',
-	templateUrl: './sign-in.component.html',
-	encapsulation: ViewEncapsulation.None,
-	animations: fuseAnimations,
+    selector     : 'auth-sign-in',
+    templateUrl  : './sign-in.component.html',
+    styleUrls    : ['./sign-in.component.scss']
 })
-export class AuthSignInComponent implements OnInit {
-	@ViewChild('signInNgForm') signInNgForm: NgForm;
+export class AuthSignInComponent implements OnInit
+{
+    accessForm: FormGroup;
+    applications: string[] = [
+        'Shipkraken', 'SoloEnvios', 'Skydropx Pro', 'Carrier Service',
+        'ecommerce-service', 'ecommerce-service-v3', 'radar-service',
+        'rates-service', 'tracking-fetcher-service', 'overweight-verifier',
+        'protect-service', 'skydropx-co-service', 'skydropx-landing',
+        'billing-service', 'kafka', 'carrier-admin', 'administrative-panel',
+        'auth-service', 'labels-webapp'
+    ];
+    environments: string[] = ['production', 'staging', 'sandbox', 'development'];
+    accessDurations: string[] = ['15 minutes', '1 hour', '3 hours', '6 hours', '9 hours', '1 week', 'N/A'];
 
-	alert: { type: FuseAlertType; message: string } = {
-		type: 'success',
-		message: '',
-	};
-	signInForm: UntypedFormGroup;
-	showAlert: boolean = false;
+    constructor(
+        private _authService: AuthService,
+        private _formBuilder: FormBuilder
+    )
+    {
+    }
 
-	/**
-	 * Constructor
-	 */
-	constructor(
-		private _activatedRoute: ActivatedRoute,
-		private _authService: AuthService,
-		private _formBuilder: UntypedFormBuilder,
-		private _router: Router
-	) {}
+    ngOnInit(): void
+    {
+        this.accessForm = this._formBuilder.group({
+            email: ['', [Validators.required, Validators.email, this.skydropxEmailValidator]],
+            application: ['', Validators.required],
+            environment: ['', Validators.required],
+            duration: ['', Validators.required]
+        });
+    }
 
-	// -----------------------------------------------------------------------------------------------------
-	// @ Lifecycle hooks
-	// -----------------------------------------------------------------------------------------------------
+    skydropxEmailValidator(control) {
+        const email = control.value;
+        if (email && !email.endsWith('@skydropx.com')) {
+            return { invalidDomain: true };
+        }
+        return null;
+    }
 
-	/**
-	 * On init
-	 */
-	ngOnInit(): void {
-		// Create the form
-		this.signInForm = this._formBuilder.group({
-			email: ['hughes.brian@company.com', [Validators.required, Validators.email]],
-			password: ['admin', Validators.required],
-			rememberMe: [''],
-		});
-	}
-
-	// -----------------------------------------------------------------------------------------------------
-	// @ Public methods
-	// -----------------------------------------------------------------------------------------------------
-
-	/**
-	 * Sign in
-	 */
-	signIn(): void {
-		// Return if the form is invalid
-		if (this.signInForm.invalid) {
-			return;
-		}
-
-		// Disable the form
-		this.signInForm.disable();
-
-		// Hide the alert
-		this.showAlert = false;
-
-		// Sign in
-		this._authService.signIn(this.signInForm.value).subscribe(
-			() => {
-				// Set the redirect url.
-				// The '/signed-in-redirect' is a dummy url to catch the request and redirect the user
-				// to the correct page after a successful sign in. This way, that url can be set via
-				// routing file and we don't have to touch here.
-				const redirectURL =
-					this._activatedRoute.snapshot.queryParamMap.get('redirectURL') || '/signed-in-redirect';
-
-				// Navigate to the redirect url
-				this._router.navigateByUrl(redirectURL);
-			},
-			(response) => {
-				// Re-enable the form
-				this.signInForm.enable();
-
-				// Reset the form
-				this.signInNgForm.resetForm();
-
-				// Set the alert
-				this.alert = {
-					type: 'error',
-					message: 'Wrong email or password',
-				};
-
-				// Show the alert
-				this.showAlert = true;
-			}
-		);
-	}
+    onSubmit(): void
+    {
+        if (this.accessForm.valid) {
+            // Here you would call your service to submit the form
+            console.log(this.accessForm.value);
+        }
+    }
 }

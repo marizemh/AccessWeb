@@ -1,0 +1,21 @@
+<div class="flex flex-col flex-auto min-w-0">
+    <div class="flex-auto p-6 sm:p-10">
+        <div class="text-3xl font-semibold tracking-tight">Access Request Details</div>
+
+        <div *ngIf="accessRequest" class="mt-8">
+            <mat-card>
+                <mat-card-content>
+                    <p><strong>Email:</strong> {{accessRequest.email}}</p>
+                    <p><strong>Application:</strong> {{accessRequest.application}}</p>
+                    <p><strong>Environment:</strong> {{accessRequest.environment}}</p>
+                    <p><strong>Duration:</strong> {{accessRequest.duration}}</p>
+                    <p><strong>Status:</strong> {{accessRequest.status}}</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-raised-button color="primary" (click)="approveRequest()">Approve</button>
+                    <button mat-raised-button color="warn" (click)="rejectRequest()">Reject</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</div>
