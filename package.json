@@ -5,8 +5,8 @@
 	"scripts": {
 		"prepare": "husky install",
 		"postinstall": "cd shared && npm install && cd ../client && npm install && cd ../server && npm install",
-		"front": "cd client && npm start",
-		"back": "cd server && npm start",
+		"front": "cd client && cross-env ENVIRONMENT=development npm start",
+		"back": "cd server && cross-env DOTENV_CONFIG_PATH=.env npm start",
 		"migration:create": "cd server && npm run migration:create",
 		"migration:status": "cd server && npm run migration:status",
 		"migration:up": "cd server && npm run migration:up",
