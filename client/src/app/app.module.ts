@@ -30,6 +30,7 @@ const routerConfig: ExtraOptions = {
 		AuthModule.forRoot({
 			domain: environment.auth0Domain,
 			clientId: environment.auth0ClientId,
+			redirectUri: window.location.origin, // Agregar redirectUri
 		}),
 
 		// Fuse, FuseConfig & FuseMockAPI

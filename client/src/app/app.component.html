@@ -1,1 +1,50 @@
-<router-outlet></router-outlet>
+<div class="app-container">
+	<header>
+		<h1>Bienvenido a la aplicación</h1>
+		<nav>
+			<button *ngIf="!(auth.isAuthenticated$ | async)" (click)="login()">Iniciar Sesión</button>
+			<button *ngIf="auth.isAuthenticated$ | async" (click)="logout()">Cerrar Sesión</button>
+		</nav>
+	</header>
+
+	<main>
+		<section *ngIf="auth.isAuthenticated$ | async">
+			<h2>Información del Usuario</h2>
+			<div class="user-info">
+				<p><strong>Nombre:</strong> {{ (auth.user$ | async)?.name }}</p>
+				<p><strong>Email:</strong> {{ (auth.user$ | async)?.email }}</p>
+				<img *ngIf="(auth.user$ | async)?.picture" [src]="(auth.user$ | async)?.picture" alt="Foto de perfil" />
+			</div>
+		</section>
+
+		<section *ngIf="!(auth.isAuthenticated$ | async)">
+			<p>Por favor, inicie sesión para acceder a más funcionalidades.</p>
+		</section>
+	</main>
+</div>
+
+<style>
+	.app-container {
+		text-align: center;
+		padding: 20px;
+	}
+	header {
+		margin-bottom: 20px;
+	}
+	nav button {
+		margin: 0 10px;
+		padding: 10px 20px;
+		font-size: 16px;
+	}
+	.user-info {
+		margin-top: 20px;
+		border: 1px solid #ccc;
+		padding: 10px;
+		border-radius: 5px;
+	}
+	.user-info img {
+		border-radius: 50%;
+		width: 100px;
+		height: 100px;
+	}
+</style>
