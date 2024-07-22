@@ -1,0 +1,38 @@
+<form [formGroup]="accessForm" (ngSubmit)="onSubmit()">
+	<label for="email">Correo:</label>
+	<input id="email" formControlName="email" required />
+	<div *ngIf="accessForm.get('email').invalid && accessForm.get('email').touched">
+		Correo inválido. Debe ser un correo de @skydropx.com.
+	</div>
+
+	<label for="application">Aplicación:</label>
+	<select id="application" formControlName="application" required>
+		<option value="" disabled selected>Seleccione una aplicación</option>
+		<option *ngFor="let app of applications" [value]="app">{{ app }}</option>
+	</select>
+
+	<label for="environment">Ambiente:</label>
+	<select id="environment" formControlName="environment" required>
+		<option value="" disabled selected>Seleccione un ambiente</option>
+		<option *ngFor="let env of environments" [value]="env">{{ env }}</option>
+	</select>
+
+	<label for="accessDuration">Duración de acceso:</label>
+	<select id="accessDuration" formControlName="accessDuration" required>
+		<option value="" disabled selected>Seleccione duración</option>
+		<option value="15">15 minutos</option>
+		<option value="60">1 hora</option>
+		<option value="180">3 horas</option>
+		<option value="360">6 horas</option>
+		<option value="540">9 horas</option>
+		<option value="168">1 semana</option>
+	</select>
+
+	<label for="approver">Aprobador:</label>
+	<select id="approver" formControlName="approver" required>
+		<option value="" disabled selected>Seleccione un aprobador</option>
+		<option *ngFor="let approver of approvers" [value]="approver.email">{{ approver.name }}</option>
+	</select>
+
+	<button type="submit" [disabled]="accessForm.invalid">Enviar</button>
+</form>

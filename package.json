@@ -3,11 +3,11 @@
 	"version": "1.0.0-SNAPSHOT",
 	"description": "DevOps webapp monorepo",
 	"scripts": {
-		"prepare": "node_modules/husky/lib/bin.js install",
-		"postinstall": "cd shared && npm i && cd ../client && npm i && cd ../server && npm i && cd ..",
+		"prepare": "husky install",
+		"postinstall": "cd shared && npm install && cd ../client && npm install && cd ../server && npm install",
 		"front": "cd client && npm start",
 		"back": "cd server && npm start",
-		"migration:create": "cd server && npm run migration:create ",
+		"migration:create": "cd server && npm run migration:create",
 		"migration:status": "cd server && npm run migration:status",
 		"migration:up": "cd server && npm run migration:up",
 		"migration:down": "cd server && npm run migration:down"
@@ -19,8 +19,13 @@
 	"author": "Skydropx",
 	"license": "UNLICENSED",
 	"devDependencies": {
-		"husky": "6.0.0",
+		"husky": "^6.0.0",
 		"prettier": "2.2.1",
 		"pretty-quick": "3.1.0"
+	},
+	"dependencies": {
+		"body-parser": "^1.20.2",
+		"express": "^4.19.2",
+		"nodemailer": "^6.9.14"
 	}
 }
