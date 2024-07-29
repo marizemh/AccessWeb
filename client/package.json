@@ -7,10 +7,10 @@
 	"scripts": {
 		"ng": "ng",
 		"set-env": "ts-node src/environments/set-env.ts",
-		"start": "npm run set-env && cross-env ng serve --configuration=development",
-		"build": "npm run set-env && cross-env ng build --configuration production",
-		"watch": "npm run set-env && cross-env ng build --watch --configuration development",
-		"test": "npm run set-env && cross-env ng test"
+		"start": "npm run set-env && ENVIRONMENT=development ng serve --configuration=${ENVIRONMENT}",
+		"build": "npm run set-env && ng build --configuration production",
+		"watch": "npm run set-env && ng build --watch --configuration development",
+		"test": "npm run set-env && ng test"
 	},
 	"dependencies": {
 		"@angular/animations": "14.1.3",
@@ -64,7 +64,6 @@
 		"@typescript-eslint/parser": "5.33.1",
 		"autoprefixer": "10.4.8",
 		"chroma-js": "2.4.2",
-		"cross-env": "^7.0.3",
 		"eslint": "8.22.0",
 		"eslint-plugin-import": "2.26.0",
 		"eslint-plugin-jsdoc": "39.3.6",
@@ -77,7 +76,6 @@
 		"karma-jasmine-html-reporter": "2.0.0",
 		"lodash": "4.17.21",
 		"postcss": "8.4.16",
-		"rimraf": "^6.0.1",
 		"tailwindcss": "3.1.8",
 		"ts-node": "10.9.1",
 		"typescript": "4.7.4"
