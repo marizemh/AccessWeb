@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json()); // Para poder parsear JSON en las solicitudes
 app.use('/api', accessRequestRouter);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
