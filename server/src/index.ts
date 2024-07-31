@@ -1,17 +1,15 @@
-import { $log } from "@tsed/common";
-import { PlatformExpress } from "@tsed/platform-express";
-import { Server } from "./server";
+import express from 'express';
+import bodyParser from 'body-parser';
+import accessRequestRouter from './routes/accessRequest';
+import dotenv from 'dotenv';
 
-async function bootstrap() {
-	try {
-		$log.debug("Start server...");
-		const platform = await PlatformExpress.bootstrap(Server);
+dotenv.config();
 
-		await platform.listen();
-		$log.debug("Server initialized");
-	} catch (er) {
-		$log.error(er);
-	}
-}
+const app = express();
+app.use(bodyParser.json());
+app.use('/api', accessRequestRouter);
 
-bootstrap();
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});

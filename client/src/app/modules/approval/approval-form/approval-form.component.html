@@ -1,0 +1,8 @@
+<h2>Solicitud de Aprobación</h2>
+<p>Correo solicitante: {{ requesterEmail }}</p>
+<p>Aplicación: {{ application }}</p>
+<p>Ambiente: {{ environment }}</p>
+<p>Duración: {{ duration }}</p>
+<div *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</div>
+<button (click)="approve()">Aprobar</button>
+<button (click)="reject()">Rechazar</button>
