@@ -1,3 +1,7 @@
+import { Router } from 'express';
+
+const router = Router();
+
 router.post('/approve-request', async (req, res) => {
     const { requesterEmail, approved } = req.body;
 
@@ -10,3 +14,6 @@ router.post('/approve-request', async (req, res) => {
 
     res.send('Decisión registrada.');
 });
+
+// Exporta el enrutador
+export default router;
