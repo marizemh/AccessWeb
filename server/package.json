@@ -40,7 +40,9 @@
 		"method-override": "3.0.0",
 		"node-nlp": "3.10.2",
 		"pg": "8.5.1",
-		"typedjson": "1.7.0",
+		"reflect-metadata": "^0.2.2",
+		"tslib": "^2.6.3",
+		"typedjson": "^1.7.0",
 		"typeorm": "0.2.31",
 		"typeorm-naming-strategies": "2.0.0"
 	},

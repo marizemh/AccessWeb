@@ -1,29 +1,33 @@
 {
-	"compileOnSave": false,
-	"compilerOptions": {
-		"allowSyntheticDefaultImports": true,
-		"baseUrl": "./src",
-		"outDir": "./dist/out-tsc",
-		"sourceMap": true,
-		"declaration": false,
-		"downlevelIteration": true,
-		"experimentalDecorators": true,
-		"moduleResolution": "node",
-		"importHelpers": true,
-		"target": "es2020",
-		"module": "es2020",
-		"lib": ["es2020", "dom"],
-		"paths": {
-			"@app/*": ["app/*"],
-			"@shared/*": ["../../shared/*"],
-            "@environments/*": ["src/environments/*"],
-            "environments/*": ["src/environments/*"],
-			"typeorm": ["app/shims/typeorm-model"],
-			"@tsed/schema": ["app/shims/tsed"],
-			"json-schema": ["app/shims/json-schema"]
-		}
-	},
-	"angularCompilerOptions": {
-		"enableI18nLegacyMessageIdFormat": false
-	}
+    "compileOnSave": false,
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": "./src",
+        "outDir": "./dist/out-tsc",
+        "sourceMap": true,
+        "declaration": false,
+        "downlevelIteration": true,
+        "experimentalDecorators": true,
+        "moduleResolution": "node",
+        "importHelpers": true,
+        "target": "es2020",
+        "module": "es2020",
+        "lib": ["es2020", "dom"],
+        "paths": {
+            "@app/*": ["app/*"],
+            "@shared/*": ["../../shared/*"],
+            "@environments/*": ["environments/*"],
+            "environments/*": ["environments/*"],
+            "typeorm": ["app/shims/typeorm-model"],
+            "@tsed/schema": ["app/shims/tsed"],
+            "json-schema": ["app/shims/json-schema"]
+        }
+    },
+    "angularCompilerOptions": {
+        "enableI18nLegacyMessageIdFormat": false
+    },
+    "include": [
+        "src/**/*.ts",
+        "src/environments/**/*.ts"
+    ]
 }
