@@ -2,6 +2,12 @@ import { Router } from 'express';
 
 const router = Router();
 
+// Ruta GET para /access-request
+router.get('/access-request', (req, res) => {
+    res.send('Esta es la respuesta para GET /access-request');
+});
+
+// Ruta POST para /approve-request
 router.post('/approve-request', async (req, res) => {
     const { requesterEmail, approved } = req.body;
 
